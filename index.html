@@ -198,9 +198,10 @@ const dimAvg = dim => {
 };
 function calc(){
   const b0 = Number(answers.b0)*10;
-  return Math.round(b0*0.30 + dimAvg("pa")*0.15 + dimAvg("na")*0.15
+  const raw = b0*0.30 + dimAvg("pa")*0.15 + dimAvg("na")*0.15
     + dimAvg("phys")*0.10 + dimAvg("stable")*0.10 + dimAvg("belong")*0.15
-    + dimAvg("esteem")*0.10 + dimAvg("growth")*0.10);
+    + dimAvg("esteem")*0.10 + dimAvg("growth")*0.10;
+  return Math.round(raw/1.15);
 }
 function quoteOf(s){
   if(s>=85) return ["花开正好","你正当'春风得意马蹄疾，一日看尽长安花'的佳境。愿乘长风破万里浪，也记得留一段闲云给自己。"];
