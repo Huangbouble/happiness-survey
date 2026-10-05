@@ -6,9 +6,9 @@ from flask import Flask, request, jsonify, send_file, Response
 import sqlite3, json, csv, io, os, datetime
 
 DB = 'happiness.db'
-ADMIN_KEY = '100426h'   # 管理密钥：导出数据用，务必改成自己的并保密
+ADMIN_KEY = '100426h'  
 REQUIRED = ['b0','b1','b2','b3','b4','c1','c2','c3','c4','c5','c6','c7','c8','d1','d2']
-FIELDS = REQUIRED + ['a1','a2','a3','a4','a5']
+FIELDS = REQUIRED + ['a1','a2','a3','a4','a5','a6']
 
 def init_db():
     con = sqlite3.connect(DB)
