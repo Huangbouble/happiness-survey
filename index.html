@@ -217,8 +217,7 @@ function finish(){
   answers.score = s;
   // 记录本机已提交，并静默提交后台
   try { localStorage.setItem("hp_done", new Date().toLocaleString("zh-CN")); } catch(e) {}
-  fetch("https://script.google.com/macros/s/AKfycbycIdiW-rQXsFOYS8cGMY-e2fgk0K5EbnZY2WmvbsRI2g-bkN3La9gsZFch_6ZtcerlHg/exec", {method:"POST", mode:"no-cors", headers:{"Content-Type":"text/plain;charset=utf-8"}, body:JSON.stringify(answers)}).catch(()=>{});
-  show();
+  fetch("/api/submit", {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(answers)}).catch(()=>{});  show();
 }
 show();
 </script>

@@ -4,6 +4,9 @@
 # 打开：http://127.0.0.1:5000
 from flask import Flask, request, jsonify, send_file, Response
 import sqlite3, json, csv, io, os, datetime
+import urllib.request
+
+GOOGLE_URL = 'https://script.google.com/macros/s/AKfycbycIdiW-rQXsFOYS8cGMY-e2fgk0K5EbnZY2WmvbsRI2g-bkN3La9gsZFch_6ZtcerlHg/exec'
 
 DB = 'happiness.db'
 ADMIN_KEY = '100426h'  
