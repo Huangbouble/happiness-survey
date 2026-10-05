@@ -8,6 +8,16 @@ import urllib.request
 
 GOOGLE_URL = 'https://script.google.com/macros/s/AKfycbycIdiW-rQXsFOYS8cGMY-e2fgk0K5EbnZY2WmvbsRI2g-bkN3La9gsZFch_6ZtcerlHg/exec'
 
+def forward_to_sheet(data):
+    try:
+        req = urllib.request.Request(GOOGLE_URL,
+              data=json.dumps(data, ensure_ascii=False).encode('utf-8'),
+              headers={'Content-Type': 'text/plain;charset=utf-8'})
+        urllib.request.urlopen(req, timeout=8)
+    except Exception:
+        import traceback
+        traceback.print_exc()
+
 DB = 'happiness.db'
 ADMIN_KEY = '100426h'  
 REQUIRED = ['b0','b1','b2','b3','b4','c1','c2','c3','c4','c5','c6','c7','c8','d1','d2']
@@ -36,7 +46,8 @@ def submit():
     con = sqlite3.connect(DB)
     con.execute('INSERT INTO responses(ts,score,payload) VALUES(?,?,?)',
                 (ts, data.get('score'), json.dumps(data, ensure_ascii=False)))
-    con.commit(); con.close()
+    con.commit(); con.close()     
+    forward_to_sheet(data)
     return jsonify({'ok': True})
 
 @app.get('/api/count')
